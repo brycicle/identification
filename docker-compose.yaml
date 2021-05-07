@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+  identification-service:
+    image: identification-service:latest
+    mem_limit: 700m
+    ports:
+      - "8001:8001"
+    networks:
+      - exercise-network
+    depends_on:
+      - discovery-service
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://discovery-service:8761/eureka
+      SERVER.PORT: 8001
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+
+  gateway-service:
+    image: gateway-service:latest
+    mem_limit: 700m
+    ports:
+      - "8080:8080"
+    networks:
+      - exercise-network
+    depends_on:
+      - discovery-service
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://discovery-service:8761/eureka
+      SERVER.PORT: 8080
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+
+  discovery-service:
+    image: discovery-service:latest
+    mem_limit: 700m
+    ports:
+      - "8761:8761"
+    networks:
+      - exercise-network
+
+  zipkin-server:
+    image: openzipkin/zipkin:2.23
+    mem_limit: 300m
+    ports:
+      - "9411:9411"
+    networks:
+      - exercise-network
+    restart: always
+
+networks:
+  exercise-network:
