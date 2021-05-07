@@ -1,7 +1,5 @@
 # Identification Service
 
-Scaffolding for Spring Microservices
-
 ### Tech
 * [Spring Boot](https://spring.io/projects/spring-boot/)
 * [Hibernate](https://hibernate.org/)
@@ -18,3 +16,7 @@ Scaffolding for Spring Microservices
 * [Docker](https://www.docker.com/)
 * [Kubernetes](https://kubernetes.io/)
 * [Google Cloud](https://cloud.google.com/)
+
+# Links
+* [Swagger Docs](http://35.186.153.252:8001/swagger-ui/index.html)
+* [Docker Repository](https://hub.docker.com/repository/docker/bryce27923/identifiication)
